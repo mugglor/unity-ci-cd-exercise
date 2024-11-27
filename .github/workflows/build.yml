@@ -34,3 +34,17 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
+  # You may pin to the exact commit or the version.
+  # uses: lienminhquang/telegram_action@cc5898558da9bb92ba9dd8e9b4707892266786ab
+      - uses: lienminhquang/telegram_action@v1.9
+        with:
+      # telegram token
+          TELEGRAM_TOKEN: 7680663501:AAHNXUbge7UIfV-JOHLoGI1kXOVvHUqbTe4
+    # telegram to id
+          TELEGRAM_TO: +SIS2Ds-Sy8Q2NWRl
+    # message
+          message: hehe
+    # file path
+          file: build/${{ matrix.targetPlatform }}
+          
+          
