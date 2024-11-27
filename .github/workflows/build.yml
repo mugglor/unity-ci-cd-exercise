@@ -34,17 +34,11 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
-  # You may pin to the exact commit or the version.
-  # uses: lienminhquang/telegram_action@cc5898558da9bb92ba9dd8e9b4707892266786ab
-      - uses: lienminhquang/telegram_action@v1.9
+      - uses: yanzay/notify-telegram@v0.1.0
+        if: always()
         with:
-      # telegram token
-          TELEGRAM_TOKEN: 7680663501:AAHNXUbge7UIfV-JOHLoGI1kXOVvHUqbTe4
-    # telegram to id
-          TELEGRAM_TO: 4795711474
-    # message
-          message: hehe
-    # file path
-          file: build/${{ matrix.targetPlatform }}
+          chat: 4795711474 # user id or channel name secret
+          token: 7680663501:AAHNXUbge7UIfV-JOHLoGI1kXOVvHUqbTe4 # token secret
+          status: ${{ job.status }} # do not modify this line
           
           
