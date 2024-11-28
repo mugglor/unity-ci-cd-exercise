@@ -38,7 +38,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message_file: build/${{ matrix.targetPlatform }}
+          message_file: build/${{ matrix.targetPlatform }}/${{ matrix.targetPlatform }}.apk
           message: |
             Project: ${{ github.repository }}
             
