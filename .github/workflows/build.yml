@@ -35,12 +35,15 @@ jobs:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
       - name: Upload to gdrive
-        uses: adityak74/google-drive-upload-git-action@main
+        uses: willo32/google-drive-upload-action@v1.1.0
         with:
+    # Google service account credentials
           credentials: ${{ secrets.GG_SERVICE_ACCOUNT_CRED }}
-          filename: build/${{ matrix.targetPlatform }}/${{ matrix.targetPlatform }}.apk
-          folderId: ${{ secrets.GG_DRIVE_FOLDER_ID }}
-          overwrite: "true" # optional boolean
+    # Google Drive folder ID to upload the file to
+          parent_folder_id: ${{ secrets.GG_DRIVE_FOLDER_ID }}
+    # Local path to the file to upload
+          target: build/${{ matrix.targetPlatform }}/${{ matrix.targetPlatform }}.apk
+        
       - uses: lienminhquang/telegram_action@v1.9
         with:
     # telegram token
@@ -52,6 +55,8 @@ jobs:
             Project: ${{ github.repository }}
             
             changelog bản build: ${{ github.event.commits[0].message }}
+
+            Link: https://drive.google.com/drive/folders/${{ secrets.GG_DRIVE_FOLDER_ID }}?usp=sharing
             
             
           
