@@ -34,6 +34,13 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
+      - name: Upload to gdrive
+        uses: adityak74/google-drive-upload-git-action@main
+        with:
+          credentials: ${{ secrets.GG_SERVICE_ACCOUNT_CRED }}
+          filename: build/${{ matrix.targetPlatform }}/${{ matrix.targetPlatform }}.apk
+          folderId: ${{ secrets.GG_DRIVE_FOLDER_ID }}
+          overwrite: "true" # optional boolean
       - uses: lienminhquang/telegram_action@v1.9
         with:
     # telegram token
