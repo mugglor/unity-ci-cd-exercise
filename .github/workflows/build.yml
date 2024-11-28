@@ -34,11 +34,16 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
-      - uses: yanzay/notify-telegram@v0.1.0
-        if: always()
+      - uses: appleboy/telegram-action@master
         with:
-          chat: 4795711474 # user id or channel name secret
-          token: 7680663501:AAHNXUbge7UIfV-JOHLoGI1kXOVvHUqbTe4 # token secret
-          status: ${{ job.status }} # do not modify this line
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message_file: build/${{ matrix.targetPlatform }}
+          message: |
+            Project: ${{ github.repository }}
+            
+            changelog bản build: ${{ github.event.commits[0].message }}
+            
+            
           
           
