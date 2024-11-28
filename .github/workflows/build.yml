@@ -34,11 +34,13 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
-      - uses: appleboy/telegram-action@v0.1.1
+      - uses: lienminhquang/telegram_action@v1.9
         with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message_file: build/${{ matrix.targetPlatform }}/${{ matrix.targetPlatform }}.apk
+    # telegram token
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }} # default is World
+    # telegram to id
+          TELEGRAM_TO: ${{ secrets.TELEGRAM_TO }} # default is World
+    # message
           message: |
             Project: ${{ github.repository }}
             
