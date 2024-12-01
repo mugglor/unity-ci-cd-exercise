@@ -52,7 +52,7 @@ jobs:
           TELEGRAM_TO: ${{ secrets.TELEGRAM_TO }} # default is World
     # message
           message: |
-            Project: ${{ github.repository }} hehe
+            Project: ${{ github.repository }}
             
             changelog bản build: ${{ github.event.commits[0].message }}
 
